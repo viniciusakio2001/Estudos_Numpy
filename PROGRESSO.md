@@ -9,50 +9,69 @@ metadata:
 
 ## Módulos Completados
 
-### ✓ Módulo 1 — Fundamentos de NumPy
-- O que é NumPy e quando utilizá-lo
-- Importação e versão
-- Criação com `np.array()` a partir de listas
-- Arrays 1D, 2D e 3D (já testou)
-- Propriedades: `ndim`, `shape`, `size`, `dtype`
+### ✓ Módulo 1 — Fundamentos de NumPy (COMPLETO)
+- ✓ O que é NumPy: biblioteca para computação numérica vetorizada
+- ✓ Quando utilizar: operações em grandes volumes, álgebra linear, simulações
+- ✓ Importação padrão: `import numpy as np`
+- ✓ **ndarray**: estrutura fundamental — arrays homogêneos
+- ✓ Propriedades essenciais: `ndim`, `shape`, `size`, `dtype`, `itemsize`, `nbytes`
+- ✓ Arrays 1D, 2D, 3D: criação e indexação
+- ✓ Comparação listas Python vs arrays NumPy: velocidade e memória
+- ✓ **Insight**: Arrays usam contiguidade de memória e operações vetorizadas (10-100x mais rápidos)
 
 ### ✓ Módulo 2 — Criação de arrays (COMPLETO)
-- `np.zeros()` ✓
-- `np.ones()` ✓
-- `np.arange()` ✓
-- `np.linspace()` ✓
-- `np.eye()` ✓ (matrizes identidade, parâmetro k para deslocamento)
-- `np.identity()` ✓ (diferença técnica: sempre quadrada)
-- `np.diag()` ✓ (matrizes diagonais, aplicações em calibração de sensores)
-- `np.full()` ✓ (arrays preenchidos com valor específico)
-- `np.empty()` ✓ (alocação sem inicialização, uso quando preencher 100%)
-- `np.logspace()` ✓ (espaçamento logarítmico, aplicações em frequências e escalas)
-- `np.zeros_like()`, `np.ones_like()`, `np.full_like()` ✓ (criação baseada em outros arrays)
+- ✓ `np.zeros()` — arrays com zeros, inicialização de estruturas
+- ✓ `np.ones()` — arrays com uns, base para multiplicação/scaling
+- ✓ `np.arange()` — sequências com passo (tipo range, mas array)
+- ✓ `np.linspace()` — N valores espaçados uniformemente (domínios matemáticos)
+- ✓ `np.logspace()` — espaçamento logarítmico (frequências, dB, escalas exponenciais)
+- ✓ `np.eye()` — matrizes identidade com parâmetro k para deslocamento
+- ✓ `np.identity()` — matrizes identidade quadradas (restrição técnica vs eye)
+- ✓ `np.diag()` — matrizes diagonais (aplicação: calibração de sensores)
+- ✓ `np.full()` — arrays preenchidos com valor específico
+- ✓ `np.empty()` — alocação rápida sem inicialização (use quando preencher 100%)
+- ✓ `np.zeros_like()`, `np.ones_like()`, `np.full_like()` — baseadas em shape/dtype existente
+- ✓ **Performance**: entendimento de custo e quando usar cada uma
 
-### ✓ Tópicos iniciais de comparação
+### ✓ Módulo 3 — Tipos de dados (COMPLETO)
+- ✓ **Inteiros com sinal**: int8, int16, int32, int64 (podem ser negativos)
+- ✓ **Inteiros sem sinal**: uint8, uint16, uint32, uint64 (apenas positivos, 0-255 para uint8)
+- ✓ **Ponto flutuante**: float32 (4 bytes, ~7 dígitos), float64 (8 bytes, ~15 dígitos, padrão)
+- ✓ **Booleanos**: bool_ (ocupa 1 byte, não 1 bit)
+- ✓ **Números complexos**: complex64, complex128
+- ✓ **Conversão com `astype()`**: cria novo array, não modifica original, trunca decimais
+- ✓ **Limites numéricos**: `np.iinfo()` para inteiros, `np.finfo()` para floats
+- ✓ **Overflow e wraparound**: int8(127) + 1 = -128 (comportamento cíclico)
+- ✓ **Promoção de tipos**: int + float = float; int + complex = complex
+- ✓ **Economia de memória**: dtype adequado reduz RAM em Big Data
+- ✓ **Insight**: Escolha de dtype impacta memória, velocidade e precisão — crítico em análise de dados
+
+### ✓ Tópicos consolidados
 - Diferenças entre operações em listas Python vs arrays NumPy
-- Entendimento de `dtype` com arrays mistos
+- Entendimento completo de dtype com arrays mistos
+- Vetorização e velocidade de operações
+- Broadcasting inicial (será aprofundado depois)
 
 ## Próximos Passos
 
-### A fazer — Completar Módulo 2
-- `np.full()` (Arrays com valor específico)
-- `np.empty()` (Arrays não inicializados)
-- `np.logspace()` (Espaçamento logarítmico)
-- Criação baseada em outros arrays (`np.zeros_like`, `np.ones_like`, `np.full_like`)
-- Definição explícita de tipos em funções de criação
+### ⚪ Módulo 4 (Indexação e fatiamento) — PRÓXIMO
+Essencial para extrair, modificar e filtrar dados:
+- Índices positivos [0, 1, 2] e negativos [-1, -2, -3]
+- Slicing com [start:stop:step]
+- Arrays multidimensionais — indexação por linha/coluna
+- Indexação booleana — filtros baseados em condições
+- Indexação avançada com listas de índices
+- Funções: `np.where()`, `np.nonzero()`, `np.argwhere()`
+- **Prático**: Extrair valores de sensores acima de threshold
 
-### A fazer — Módulo 3 (Tipos de dados)
-Explorar:
-- Inteiros, ponto flutuante, booleanos
-- Conversão com `astype()`
-- `np.iinfo` e `np.finfo`
+### ⚪ Módulo 5 (Alteração e organização)
+Transformação de estrutura de arrays
 
-### A fazer — Módulo 4 (Indexação e fatiamento)
-Essencial para manipulação de dados
+### ⚪ Módulo 6 (Operações vetorizadas)
+Substituir loops por operações elemento a elemento
 
-### A fazer — Módulo 6 (Operações vetorizadas)
-Essencial antes de Módulo 7
+### ⚪ Módulo 7 (Broadcasting)
+Operações entre arrays de shapes diferentes
 
 ## Contexto de Aprendizado
 - Foco em análise e manipulação de dados
@@ -203,3 +222,70 @@ Essencial antes de Módulo 7
 - `np.iinfo()` e `np.finfo()` (limites de tipos)
 - Overflow e comportamento em limites
 - Conversão para bool, strings, datetime64
+
+---
+
+### Sessão 2026-08-04
+- **Conclusão do Módulo 3 — Tipos de dados** e revisão final dos Módulos 1-3
+- Arquivos de estudos: `numpy_13.py`, `numpy_14.py`, `numpy_15.py`, `numpy_16.py`, `numpy_17.py`
+
+#### Aprendizados — Complemento do Módulo 3
+- ✓ **Tipos inteiros com e sem sinal:**
+  - Com sinal: int8, int16, int32, int64 (podem ser negativos)
+  - Sem sinal: uint8, uint16, uint32, uint64 (apenas positivos, 0 a 255 para uint8)
+  - Aplicação: uint8 para imagens (0-255), astype(np.uint8) para conversão
+  
+- ✓ **Ponto flutuante e precisão:**
+  - float32 (4 bytes, ~7 dígitos) — menor memória, menos preciso
+  - float64 (8 bytes, ~15 dígitos) — **padrão em NumPy**, maior precisão
+  - Aplicação: usar float32 em dados de sensores para economizar RAM
+  
+- ✓ **Booleanos:**
+  - bool_ em NumPy ocupa 1 byte (não 1 bit como esperado)
+  - Operações lógicas retornam bool_
+  
+- ✓ **Números complexos:**
+  - complex64 (2 floats de 32 bits)
+  - complex128 (2 floats de 64 bits)
+  
+- ✓ **Limites numéricos com `np.iinfo()` e `np.finfo()`:**
+  - `np.iinfo(np.int8)`: min=-128, max=127, bits=8
+  - `np.finfo(np.float32)`: min, max, eps (épsilon), precisão
+  - Ferramenta para entender limites de cada tipo
+  
+- ✓ **Overflow e wraparound:**
+  - int8(127) + 1 = -128 (comportamento cíclico, não erro)
+  - Importante para detecção de anomalias em sensores
+  
+- ✓ **Promoção de tipos:**
+  - int + float = float (resultado com mais precisão)
+  - int + complex = complex
+  - Automaticamente NumPy escolhe o tipo mais abrangente
+
+#### Consolidação dos Módulos 1-3
+- ✓ Diferenças fundamentais: listas Python são heterogêneas e lentas; arrays NumPy são homogêneos e rápidos
+- ✓ Propriedades essenciais: ndim, shape, size, dtype, itemsize, nbytes
+- ✓ Múltiplas formas de criar arrays: np.array(), np.zeros(), np.ones(), np.arange(), np.linspace()
+- ✓ Economia de memória através de escolha adequada de dtype
+- ✓ Conversão segura entre tipos com astype()
+- ✓ Compreensão de broadcasting inicial (será aprofundado no Módulo 7)
+
+#### Habilidades Consolidadas
+- Criação e configuração de arrays conforme necessidade
+- Entendimento profundo de tipos de dados e impacto em memória
+- Capacidade de diagnosticar problemas de tipo e espaço em memória
+- Compreensão de vetorização vs loops Python
+- Base sólida para operações e análise de dados
+
+#### Status do Aprendizado
+- ✅ **Módulo 1** — Fundamentos (COMPLETO)
+- ✅ **Módulo 2** — Criação de arrays (COMPLETO)
+- ✅ **Módulo 3** — Tipos de dados (COMPLETO)
+- ⚪ **Próximo** — Módulo 4: Indexação e fatiamento (essencial para manipulação de dados)
+
+#### Próxima Sessão
+- Iniciar **Módulo 4 — Indexação e fatiamento**
+- Tópicos: índices positivos/negativos, slicing, arrays multidimensionais
+- Indexação booleana para filtros
+- Funções: `np.where()`, `np.nonzero()`, `np.argwhere()`
+- Prático: extrair valores de sensores acima de threshold
