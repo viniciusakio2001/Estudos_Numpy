@@ -289,3 +289,66 @@ Operações entre arrays de shapes diferentes
 - Indexação booleana para filtros
 - Funções: `np.where()`, `np.nonzero()`, `np.argwhere()`
 - Prático: extrair valores de sensores acima de threshold
+
+---
+
+### Sessão 2026-08-05
+- **Consolidação dos Módulos 1-3** e **Preparação para Módulo 4**
+- Arquivo de estudos: `numpy_17.py`
+
+#### Aprendizados — Exercício Prático de Seleção de dtypes
+
+**Contexto:** Revisão de exercício sobre escolha correta de dtypes para diferentes cenários reais
+
+- ✓ **Seleção contextual de dtypes:**
+  - IDs de usuários (0–10.000): `uint16` (0–65.535) ✓ — economia de memória vs int64
+  - Temperaturas contínuas (-10 a 50°C): `float32` (4 bytes) ✓ — precisão suficiente
+  - Contadores (até 1 milhão): `uint32` (0–4.294.967.295) ✓ — sem sinal pois contadores são sempre ≥ 0
+
+- ✓ **Erro comum — API de `np.iinfo()` e `np.finfo()`:**
+  - ❌ Errado: `np.iinfo(array_uint16)` — passa o array completo
+  - ✓ Correto: `np.iinfo(np.uint16)` ou `np.iinfo(array_uint16.dtype)` — passa o tipo de dado
+  - Insight: funções de introspexão de tipos recebem dtype, não arrays
+  - Diagnóstico: erro de tipo (TypeError) quando passa array inteiro
+
+- ✓ **Diferenciação entre `np.arange()` e `np.linspace()`:**
+  - `np.arange(1, 11)`: sequência **incremental** (1, 2, 3, 4, 5...) — para contadores sequenciais
+  - `np.linspace(1, 1000000, 10)`: distribuição **uniforme** (111111.11, 222222.22...) — para intervalos matemáticos
+  - Contexto determina a função: contadores → arange; domínios matemáticos → linspace
+  - Aprendizado: entender quando usar cada função baseado no caso de uso
+
+#### Consolidação de Prática
+- ✓ Criação de arrays com shapes apropriados
+- ✓ Conversão com `.astype()` mantendo precisão
+- ✓ Acesso a `shape`, `dtype`, `nbytes`
+- ✓ Uso correto de `np.iinfo()` e `np.finfo()` para validar limites
+- ✓ Cálculo de economia de memória (uint16 = 2 bytes vs int64 = 8 bytes)
+
+#### Habilidades Consolidadas
+- Escolha de dtype é **contextual** — requer conhecimento do domínio dos dados
+- API NumPy distingue entre array e dtype em funções de introspecção
+- Sequências vs distribuições são escolhas diferentes com impacto prático
+- Capacidade de validar se um dtype é adequado usando `np.iinfo().max`
+
+#### Status do Aprendizado
+- ✅ **Módulo 1** — Fundamentos (COMPLETO)
+- ✅ **Módulo 2** — Criação de arrays (COMPLETO)
+- ✅ **Módulo 3** — Tipos de dados (CONSOLIDADO E PRATICADO)
+- ⚪ **Próximo** — Módulo 4: Indexação e fatiamento (começando na próxima sessão)
+
+#### Preparação para Módulo 4
+- **Contexto:** Indexação e fatiamento são essenciais para extrair, filtrar e modificar dados
+- **Primeiros conceitos a praticar:**
+  - Índices positivos [0, 1, 2...] e negativos [-1, -2...]
+  - Slicing com [start:stop:step]
+  - Exemplo inicial: `temperaturas = np.array([20.5, 21.3, 19.8, 25.1, 18.9, 22.4])`
+    - Acessar primeira temperatura: `[0]`
+    - Acessar última temperatura: `[-1]`
+    - Acessar do índice 1 ao 3: `[1:4]`
+
+#### Próxima Sessão
+- Iniciar **Módulo 4 — Indexação e fatiamento**
+- Começar com 1D arrays, depois multidimensionais
+- Indexação booleana para filtros condicionais
+- Funções essenciais: `np.where()`, `np.nonzero()`, `np.argwhere()`
+- Prático: filtrar leituras de sensores acima de threshold
