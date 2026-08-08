@@ -346,9 +346,69 @@ Operações entre arrays de shapes diferentes
     - Acessar última temperatura: `[-1]`
     - Acessar do índice 1 ao 3: `[1:4]`
 
+---
+
+### Sessão 2026-08-07
+- **Consolidação Completa do Módulo 4 — Indexação e fatiamento**
+- Arquivos de estudos: `numpy_18.py`, `numpy_20.py`
+
+#### Aprendizados — Indexação e Fatiamento Completos
+
+**Parte 1: Indexação 1D (numpy_18.py)**
+- ✓ Indexação positiva: `arr[0]` — primeira posição
+- ✓ Indexação negativa: `arr[-1]` — última posição
+- ✓ Slicing com intervalo: `arr[2:6]` — índices 2 a 5
+- ✓ Slicing a partir de um índice: `arr[5:]` — do índice 5 até o final
+- ✓ Slicing inverso: `arr[::-1]` — inverte array com passo -1
+- ✓ **100% de acertos** nos exercícios práticos
+
+**Parte 2: Indexação 2D (numpy_20.py — exercícios prático-conceituais)**
+- ✓ **Diferença crítica descoberta pelo usuário:**
+  - `arr[1]` → shape (3,) — indexação simples REDUZ uma dimensão
+  - `arr[1:2]` → shape (1, 3) — slicing PRESERVA todas as dimensões
+  - Regra de ouro: slicing [start:stop] sempre preserva dimensões; indexação [n] reduz
+  
+- ✓ **Sintaxe 2D:**
+  - Primeira dimensão (linha): `arr[linha]`
+  - Segunda dimensão (coluna): `arr[:, coluna]`
+  - Elemento específico: `arr[linha, coluna]` → retorna escalar (shape ())
+  
+- ✓ **Indexação booleana:**
+  - Criação de máscara: `mascara = arr > 24.0` → shape igual ao array original
+  - Aplicação de máscara: `arr[mascara]` → achata resultado para 1D
+  - **Insight crítico:** máscara deve ser aplicada ao MESMO array em que foi criada
+
+**Parte 3: Indexação Booleana com Múltiplas Condições**
+- ✓ Combinação com operadores lógicos: `(arr >= 24) & (arr <= 25)`
+- ✓ Sintaxe correta: parênteses em cada condição, operador `&` no meio
+- ✓ Aplicação prática — Filtro de dados de sensores com múltiplos critérios
+
+#### Erros Cometidos e Corrigidos
+| Erro | Tipo | Diagnóstico |
+|------|------|-----------|
+| Usar índice 1 para hora 1 | Indexação 0-based | Primeiro = índice 0 |
+| Shape (1,) para escalar | Dimensão | Testar com `.shape` |
+| `arr >= 24 & <= 25` | Sintaxe | Usar parênteses: `(arr >= 24) & (arr <= 25)` |
+| Aplicar máscara ao array errado | Lógica | Máscara deve vir do mesmo array |
+| Contagem incorreta de valores | Validação manual | Tabular coluna por coluna |
+
+#### Habilidades Desenvolvidas
+- ✓ Indexação 1D e 2D completa
+- ✓ Entendimento de redução vs preservação de dimensões
+- ✓ Criação e aplicação de máscaras booleanas
+- ✓ Combinação de múltiplas condições
+- ✓ Validação manual de resultados
+
+#### Status do Aprendizado
+- ✅ **Módulo 1** — Fundamentos (COMPLETO)
+- ✅ **Módulo 2** — Criação de arrays (COMPLETO)
+- ✅ **Módulo 3** — Tipos de dados (COMPLETO)
+- ✅ **Módulo 4** — Indexação e fatiamento (COMPLETO E CONSOLIDADO)
+- ⚪ **Próximo** — Módulo 5: Reshape, Transpose, Flatten
+
 #### Próxima Sessão
-- Iniciar **Módulo 4 — Indexação e fatiamento**
-- Começar com 1D arrays, depois multidimensionais
-- Indexação booleana para filtros condicionais
-- Funções essenciais: `np.where()`, `np.nonzero()`, `np.argwhere()`
-- Prático: filtrar leituras de sensores acima de threshold
+- Iniciar **Módulo 5 — Alteração e organização**
+- `reshape()`: mudar dimensões mantendo valores
+- `transpose()` / `.T`: inverter linhas e colunas
+- `flatten()` vs `ravel()`: diferença entre cópia e view
+- Aplicação prática: reorganizar dados de sensores
