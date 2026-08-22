@@ -406,9 +406,70 @@ Operações entre arrays de shapes diferentes
 - ✅ **Módulo 4** — Indexação e fatiamento (COMPLETO E CONSOLIDADO)
 - ⚪ **Próximo** — Módulo 5: Reshape, Transpose, Flatten
 
+---
+
+### Sessão 2026-08-20 — 2026-08-22
+- **Consolidação Completa do Módulo 5 — Alteração e organização**
+- Arquivos de estudos: `numpy_21.py`, `numpy_22.py`, `numpy_23.py`
+
+#### Aprendizados — Manipulação de Dimensões
+
+**Parte 1: reshape() e transpose()**
+- ✓ `reshape()` — muda shape mantendo valores (view, não cópia)
+- ✓ `transpose()` / `.T` — inverte linhas ↔ colunas (view, não cópia)
+- ✓ Transposição em arrays não-contíguos requer cópia em `ravel()`
+
+**Parte 2: flatten() vs ravel()**
+- ✓ `flatten()` — **sempre copia**, seguro para modificações
+- ✓ `ravel()` — **retorna view quando possível**, mais rápido
+- ✓ Regra: use `flatten()` para segurança, `ravel()` para performance
+
+**Parte 3: squeeze() e expand_dims()**
+- ✓ `squeeze()` — remove **TODAS** dimensões de tamanho 1
+- ✓ `squeeze(axis=n)` — remove **APENAS** a dimensão n se tiver tamanho 1
+- ✓ `expand_dims(arr, axis=0)` — adiciona dimensão no início
+- ✓ `expand_dims(arr, axis=1)` — adiciona dimensão no meio
+- ✓ Visualização: axis=0 → formato horizontal (1, n); axis=1 → formato vertical (n, 1)
+
+**Parte 4: newaxis — sintaxe alternativa**
+- ✓ `arr[np.newaxis, :]` equivale a `expand_dims(arr, axis=0)`
+- ✓ `arr[:, np.newaxis]` equivale a `expand_dims(arr, axis=1)`
+- ✓ Vantagem: sintaxe compacta, idiomática em NumPy
+
+**Parte 5: np.tile() — replicação de arrays**
+- ✓ `np.tile(arr, (n_linhas, n_colunas))` — replica array
+- ✓ Require 2D mínimo: precisa de `expand_dims()` antes se partindo de 1D
+
+#### Desafio Final — Encadeamento de Operações
+- ✓ Transformação (1,1,4) → (4,) com `squeeze()`
+- ✓ Expansão (4,) → (1,4) com `expand_dims()`
+- ✓ Replicação (1,4) → (10,4) com `np.tile()`
+- ✓ Transposição (10,4) → (4,10) com `.T`
+
+#### Erros Identificados e Corrigidos
+| Erro | Tipo | Solução |
+|------|------|---------|
+| Usar array novo em passo 3 | Lógica | Continuar com resultado anterior |
+| `print(shape)` ao invés de `print(shape.shape)` | Sintaxe | Usar `.shape` para acessar propriedade |
+
+#### Habilidades Consolidadas
+- ✓ Manipulação completa de dimensões (adicionar, remover, reorganizar)
+- ✓ Compreensão de views vs cópias em operações de reshape
+- ✓ Encadeamento eficiente de transformações
+- ✓ Aplicação prática: preparar dados de sensores para análise
+
+#### Status do Aprendizado
+- ✅ **Módulo 1** — Fundamentos (COMPLETO)
+- ✅ **Módulo 2** — Criação de arrays (COMPLETO)
+- ✅ **Módulo 3** — Tipos de dados (COMPLETO)
+- ✅ **Módulo 4** — Indexação e fatiamento (COMPLETO)
+- ✅ **Módulo 5** — Alteração e organização (COMPLETO)
+- ⚪ **Próximo** — Módulo 6: Operações vetorizadas (começando próxima sessão)
+
 #### Próxima Sessão
-- Iniciar **Módulo 5 — Alteração e organização**
-- `reshape()`: mudar dimensões mantendo valores
-- `transpose()` / `.T`: inverter linhas e colunas
-- `flatten()` vs `ravel()`: diferença entre cópia e view
-- Aplicação prática: reorganizar dados de sensores
+- Iniciar **Módulo 6 — Operações vetorizadas**
+- Operações elemento a elemento
+- Operadores aritméticos em arrays
+- Comparações e operadores lógicos
+- Substituição de loops Python por vetorização
+- Impacto em performance e memória
