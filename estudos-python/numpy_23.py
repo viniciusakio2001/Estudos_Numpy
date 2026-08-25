@@ -30,16 +30,22 @@ print(f"Shape trnaspose: {shape_transpose.shape}")
 # Mostre shape e dados em cada etapa
 
 # %%
-# TESTE: O que acontece sem expand_dims?
-print("\n=== TESTE: tile() sem expand_dims ===")
+# COMPARAÇÃO: tile com vs sem expand_dims
 
 arr_1d = np.array([1.5, 2.3, 3.1, 4.2])  # shape: (4,)
-print(f"Array 1D shape: {arr_1d.shape}")
 
-# Tentar tile diretamente — qual é o resultado?
-try:
-    resultado_errado = np.tile(arr_1d, (10, 1))
-    print(f"Resultado shape: {resultado_errado.shape}")
-    print(resultado_errado)
-except Exception as e:
-    print(f"Erro: {type(e).__name__}: {e}")
+# Opção 1: SEM expand_dims (direto)
+resultado_direto = np.tile(arr_1d, (10, 1))
+print(f"Direto - shape: {resultado_direto.shape}")
+print(resultado_direto)
+print()
+
+# Opção 2: COM expand_dims (explícito)
+arr_2d = np.expand_dims(arr_1d, axis=0)  # (4,) → (1, 4)
+resultado_explicito = np.tile(arr_2d, (10, 1))
+print(f"Com expand_dims - shape: {resultado_explicito.shape}")
+print(resultado_explicito)
+print()
+
+# São iguais?
+print(f"Resultados são idênticos? {np.array_equal(resultado_direto, resultado_explicito)}")
