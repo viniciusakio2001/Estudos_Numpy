@@ -466,10 +466,75 @@ Operações entre arrays de shapes diferentes
 - ✅ **Módulo 5** — Alteração e organização (COMPLETO)
 - ⚪ **Próximo** — Módulo 6: Operações vetorizadas (começando próxima sessão)
 
+---
+
+### Sessão 2026-09-06
+- **Consolidação Completa do Módulo 6 — Operações vetorizadas**
+- Arquivos de estudos: `numpy_24.py`, `numpy_25.py`
+
+#### Aprendizados — Operações Vetorizadas Completas
+
+**Parte 1: Operações Aritméticas e Comparações (numpy_24.py)**
+- ✓ Operações aritméticas vetorizadas (sem loops)
+- ✓ Conversão de unidades: Celsius → Fahrenheit (F = C × 1.8 + 32)
+- ✓ Criação de máscaras booleanas com comparadores
+- ✓ Aplicação de máscaras para extração de dados
+- ✓ Combinação de múltiplas condições com operadores lógicos (`&`, `|`)
+- ✓ Operações in-place (`*=`, `+=`) para economizar RAM
+- ✓ Funções matemáticas universais: `np.abs()`, `np.sqrt()`, `np.power()`
+
+**Parte 2: Métodos de ufunc e Funções Matemáticas (numpy_25.py)**
+- ✓ `np.add.reduce()` — agregação cumulativa final
+- ✓ `np.add.accumulate()` — retorna todos os passos intermediários
+- ✓ **Conceito crítico:** último valor de `accumulate()` = resultado de `reduce()`
+- ✓ `np.multiply.outer()` — operação entre TODOS os pares
+- ✓ Trigonometria: `np.sin()`, `np.cos()`, identidade sin² + cos² = 1
+- ✓ Logaritmo e exponencial: `np.log()` como inverso de `np.exp()`
+- ✓ `np.where()` — operação condicional vetorizada (IF-THEN-ELSE)
+- ✓ Encadeamento de operações: conversão → normalização → logaritmo → classificação
+
+**Parte 3: Benchmarking e Performance**
+- ✓ Comparação prática: loop Python vs vetorização
+- ✓ Dataset de 1 milhão de elementos: vetorização é **10-100x mais rápida**
+- ✓ Validação com `np.array_equal()` para confirmar resultados
+
+**Parte 4: Conceito de Discretização**
+- ✓ `np.linspace(0, 2π, 8)` cria 8 pontos igualmente espaçados
+- ✓ Resolução de amostragem afeta precisão
+- ✓ Com 8 pontos: máximo do seno está em índice 2 (ângulo ≈ 1.80), não exatamente em π/2 (≈ 1.57)
+- ✓ Diferença ≈ 0.22 radianos é esperada — trade-off entre resolução e quantidade de amostras
+- ✓ Mais pontos = melhor resolução; menos pontos = aproximação grosseira
+
+#### Erros Identificados e Corrigidos
+| Erro | Tipo | Solução |
+|------|------|---------|
+| Typo: `np.log(an)` | Sintaxe | Corrigido: `np.log(crescimento_exp)` |
+| Índice seno máximo = 8 | Indexação | Corrigido: índice 2 (valores 0-7 apenas) |
+| Índice cosseno máximo = 8 | Indexação | Corrigido: índices 0 e 7 (máximo em π e 2π) |
+| Não validar com `np.argmax()` | Prática | Adicionado: validação com impressão dos índices |
+| accumulate() ≠ reduce() | Conceitual | Esclarecido: último elemento de accumulate = resultado de reduce |
+
+#### Habilidades Consolidadas
+- ✓ Substituição completa de loops por operações vetorizadas
+- ✓ Entendimento profundo de ufuncs e seus métodos
+- ✓ Composição de operações complexas em sequência
+- ✓ Validação de resultados com funções auxiliares
+- ✓ Benchmarking prático de performance
+- ✓ Conceito fundamental: discretização e resolução de amostragem
+
+#### Status do Aprendizado
+- ✅ **Módulo 1** — Fundamentos (COMPLETO)
+- ✅ **Módulo 2** — Criação de arrays (COMPLETO)
+- ✅ **Módulo 3** — Tipos de dados (COMPLETO)
+- ✅ **Módulo 4** — Indexação e fatiamento (COMPLETO)
+- ✅ **Módulo 5** — Alteração e organização (COMPLETO)
+- ✅ **Módulo 6** — Operações vetorizadas (COMPLETO)
+- ⚪ **Próximo** — Módulo 7: Broadcasting (começando próxima sessão)
+
 #### Próxima Sessão
-- Iniciar **Módulo 6 — Operações vetorizadas**
-- Operações elemento a elemento
-- Operadores aritméticos em arrays
-- Comparações e operadores lógicos
-- Substituição de loops Python por vetorização
-- Impacto em performance e memória
+- Iniciar **Módulo 7 — Broadcasting**
+- Regras de broadcasting para arrays de shapes diferentes
+- Expansão implícita de dimensões
+- Uso de `np.newaxis` em broadcasting
+- Operações entre matrizes e vetores
+- Erros comuns de broadcasting e soluções
