@@ -531,10 +531,78 @@ Operações entre arrays de shapes diferentes
 - ✅ **Módulo 6** — Operações vetorizadas (COMPLETO)
 - ⚪ **Próximo** — Módulo 7: Broadcasting (começando próxima sessão)
 
+---
+
+### Sessão 2026-09-09
+- **Consolidação Completa do Módulo 7 — Broadcasting**
+- Arquivos de estudos: `numpy_26.py`, `numpy_27.py`
+
+#### Aprendizados — Broadcasting Completo
+
+**Parte 1: Broadcasting Básico (numpy_26.py)**
+- ✓ Broadcasting escalar: `array + 5` → expande escalar para (5,)
+- ✓ Broadcasting 1D vs 1D: `(3,) - (3,)` → operação elemento a elemento
+- ✓ Broadcasting 2D × 1D: `(3, 3) - (3,)` → desconto por coluna
+  - **Conceito crítico:** desconto (3,) se aplica a CADA linha de vendas (3, 3)
+  - Sem reshape, NumPy tenta alinhar da direita e falha (3 ≠ 3 em colunas)
+
+**Parte 2: As 3 Regras de Broadcasting**
+- ✓ **Regra 1:** Se arrays têm números diferentes de dimensões → preenche com 1s à esquerda
+- ✓ **Regra 2:** Compara shapes da direita para esquerda → dimensões devem ser iguais OU uma é 1
+- ✓ **Regra 3:** Dimensão de tamanho 1 é expandida para o outro tamanho
+- ✓ **Aplicação crítica:** Quando `(3,)` alinha com `(3, 4)`:
+  - (3,) interpretado como (1, 3) após Regra 1
+  - (1, 3) vs (3, 4): incompatível → precisa reshape!
+  - (3, 1) vs (3, 4): compatível → expande coluna
+
+**Parte 3: reshape() vs np.newaxis — Duas Sintaxes Equivalentes**
+- ✓ `media.reshape(-1, 1)` → (3,) → (3, 1) explícito
+- ✓ `media[:, np.newaxis]` → (3,) → (3, 1) idiomático
+- ✓ Ambas funcionam; segunda é mais Pythônica em NumPy
+
+**Parte 4: Normalização Min-Max com Broadcasting (numpy_27.py)**
+- ✓ Fórmula: `(valores - min) / (max - min)` → escala entre 0 e 1
+- ✓ Cada sensor tem mín e máx diferentes (ex: sensor1: 20-24, sensor2: 19-23)
+- ✓ Broadcasting expande (3, 1) para (3, 4) → normaliza cada linha proporcional
+- ✓ Resultado: todas as linhas têm padrão igual [0.0, 0.5, 0.25, 0.75, 1.0]
+  - Porque cada linha é normalizada pelo seu próprio intervalo
+- ✓ Validação: mín normalizado = 0, máx normalizado = 1 ✓
+
+#### Conceito Fundamental Consolidado
+
+**Broadcasting NÃO duplica dados em memória** — é uma operação lógica que NumPy otimiza:
+- (3, 1) permanece (3, 1), mas a operação com (3, 4) a trata como (3, 4)
+- Economiza RAM em grandes datasets
+- Operações vetorizadas: 10-100x mais rápidas que loops Python
+
+#### Erros Identificados e Corrigidos
+| Erro | Tipo | Solução |
+|------|------|---------|
+| Tentar `(3, 4) - (3,)` | Broadcasting | Reshape para (3, 1) com `reshape(-1, 1)` ou `[:, np.newaxis]` |
+| Confundir `(3,)` com `(1, 3)` | Dimensão | NumPy alinha de trás para frente; usar `reshape()` para clareza |
+| Pensar que broadcasting copia | Memória | NumPy apenas aplica lógica; sem duplicação |
+
+#### Habilidades Consolidadas
+- ✓ Compreensão profunda de como NumPy alinha shapes
+- ✓ Aplicação prática em normalização de dados (min-max)
+- ✓ Uso fluente de `reshape()` e `np.newaxis`
+- ✓ Validação de compatibilidade de shapes antes de operações
+- ✓ Reconhecimento de quando broadcast vai falhar
+
+#### Status do Aprendizado
+- ✅ **Módulo 1** — Fundamentos (COMPLETO)
+- ✅ **Módulo 2** — Criação de arrays (COMPLETO)
+- ✅ **Módulo 3** — Tipos de dados (COMPLETO)
+- ✅ **Módulo 4** — Indexação e fatiamento (COMPLETO)
+- ✅ **Módulo 5** — Alteração e organização (COMPLETO)
+- ✅ **Módulo 6** — Operações vetorizadas (COMPLETO)
+- ✅ **Módulo 7** — Broadcasting (COMPLETO E CONSOLIDADO)
+- ⚪ **Próximo** — Módulo 8: Agregações e Estatística (começando próxima sessão)
+
 #### Próxima Sessão
-- Iniciar **Módulo 7 — Broadcasting**
-- Regras de broadcasting para arrays de shapes diferentes
-- Expansão implícita de dimensões
-- Uso de `np.newaxis` em broadcasting
-- Operações entre matrizes e vetores
-- Erros comuns de broadcasting e soluções
+- Iniciar **Módulo 8 — Agregações e Estatística**
+- Funções: `sum`, `mean`, `median`, `min`, `max`
+- Agregações por eixo (`axis=0`, `axis=1`)
+- Estatística: `std`, `var`, `percentile`, `quantile`
+- `keepdims=True` para manter dimensões
+- Aplicação prática: análise de dados de sensores
