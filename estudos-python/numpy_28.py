@@ -36,7 +36,9 @@ print(f"Consumo (shape {consumo.shape}):\n{consumo}\n")
 
 # PERGUNTA ANTES DE IMPLEMENTAR:
 # - Qual é a soma TOTAL de consumo (todos os elementos)?
+# - A soma total é: 2073
 # - Qual é o consumo MÉDIO em geral?
+# - O Consumo médio é: 
 # Faça uma estimativa:
 
 # TODO(human): Use np.sum() e np.mean() SEM especificar axis
@@ -47,7 +49,7 @@ print(f"Soma total de consumo: {soma_total} kWh\n")
 print(f"Consumo médio geral: {media_geral:.2f} kWh\n")
 
 # Pergunta: qual é o shape do resultado?
-# Resposta:
+# Resposta: o shape é ()
 
 print("=" * 60)
 
@@ -58,27 +60,27 @@ print(f"Consumo (shape {consumo.shape}):\n{consumo}\n")
 
 # axis=0 → agregar ao LONGO das LINHAS (primira dimensão)
 # Resultado: 1 valor por COLUNA (dia)
+print(f"Consumo ao longo das linhas: \n (shape:{np.sum(consumo, axis=0).shape})\n {np.sum(consumo, axis=0)}\n")
 # PERGUNTA: qual será o shape?
-# Resposta:
+# Resposta: o shape será (5,)
 
 # TODO(human): Calcule a soma de consumo POR DIA (eixo 0)
 # Dica: axis=0 significa "elimine a dimensão das máquinas"
-soma_por_dia = np.sum(consumo, axis=0)
-print(f"Soma de consumo por dia (shape {soma_por_dia.shape}):\n{soma_por_dia}\n")
+consumo_dia = np.sum(consumo, axis=0)
+print(f"Soma de consumo por dia: \n{consumo_dia}\n")
 
 # axis=1 → agregar ao LONGO das COLUNAS (segunda dimensão)
 # Resultado: 1 valor por LINHA (máquina)
+
 # PERGUNTA: qual será o shape?
-# Resposta:
+# Resposta: O shape é de: (3,)
 
 # TODO(human): Calcule a soma de consumo POR MÁQUINA (eixo 1)
 # Dica: axis=1 significa "elimine a dimensão dos dias"
-soma_por_maquina = np.sum(consumo, axis=1)
-print(f"Soma de consumo por máquina (shape {soma_por_maquina.shape}):\n{soma_por_maquina}\n")
+consumo_maquina = np.sum(consumo, axis=1)
+print(f"Soma de consumo por máquina: (shape: {consumo_maquina.shape})\n {consumo_maquina} \n")
 
 # Validação: soma das linhas DEVE IGUALAR soma das colunas
-print(f"Soma total (verificação): {np.sum(soma_por_dia)} kWh\n")
-print(f"Soma total (outra via):   {np.sum(soma_por_maquina)} kWh\n")
 
 print("=" * 60)
 
@@ -88,22 +90,24 @@ print("\n=== 3. MÉDIA, MÍNIMO E MÁXIMO POR EIXO ===\n")
 print(f"Consumo (shape {consumo.shape}):\n{consumo}\n")
 
 # TODO(human): Calcule a média de consumo POR MÁQUINA
-media_por_maquina = np.mean(consumo, axis=1)
-print(f"Média de consumo por máquina (shape {media_por_maquina.shape}):\n{media_por_maquina}\n")
+mediaconsumo_maquina = np.mean(consumo, axis=1)
+print(f"Média de consumo por máquina: (Shape: {mediaconsumo_maquina.shape})\n {mediaconsumo_maquina} \n")
 
 # TODO(human): Calcule o MÍNIMO de consumo POR DIA
-minimo_por_dia = np.min(consumo, axis=0)
-print(f"Mínimo de consumo por dia (shape {minimo_por_dia.shape}):\n{minimo_por_dia}\n")
+minconsumo_dia = np.min(consumo, axis=0)
+print(f"Minimo de consumo por dia: (shape: {minconsumo_dia.shape}) \n {minconsumo_dia} \n") 
 
 # TODO(human): Calcule o MÁXIMO de consumo POR DIA
-maximo_por_dia = np.max(consumo, axis=0)
-print(f"Máximo de consumo por dia (shape {maximo_por_dia.shape}):\n{maximo_por_dia}\n")
+maxconsumo_dia = np.max(consumo, axis=0)
+print(f"Máximo de consumo por dia: (shape: {maxconsumo_dia.shape}) \n {maxconsumo_dia} \n")
 
 # Pergunta: qual máquina consome mais em média?
+# A máquina que consome mais
+# A máquina que consome mais é a tereceira maquina
 # Dica: use np.argmax()
-maquina_maior_consumo = np.argmax(media_por_maquina)
-print(f"Máquina com maior consumo médio: máquina {maquina_maior_consumo + 1} ({media_por_maquina[maquina_maior_consumo]:.2f} kWh)\n")
 
+maquina_alta = np.argmax(mediaconsumo_maquina)
+print(f"A Máquina que consme mais é o indice: {maquina_alta} \n")
 print("=" * 60)
 
 # %%
@@ -113,23 +117,23 @@ print(f"Consumo original (shape {consumo.shape}):\n{consumo}\n")
 
 # SEM keepdims: dimensão desaparece
 media_sem = np.mean(consumo, axis=1)
-print(f"Média SEM keepdims (shape {media_sem.shape}):\n{media_sem}\n")
-
+print(f"Média sem keepdims:(shape: {media_sem.shape}) \n {media_sem}\n")
 # COM keepdims=True: dimensão é mantida como 1
 # TODO(human): Use keepdims=True em np.mean()
+
 media_com = np.mean(consumo, axis=1, keepdims=True)
-print(f"Média COM keepdims (shape {media_com.shape}):\n{media_com}\n")
+print(f"Média com keepdims: ({media_com.shape}) \n {media_com} \n")
 
 # Por que isso é útil?
 # Com keepdims, você pode fazer broadcasting novamente!
 # TODO(human): Normalize subtraindo a média (use keepdims)
+
 consumo_normalizado = consumo - media_com
-print(f"Consumo normalizado (cada máquina centrada em 0):\n{consumo_normalizado}\n")
+print(f"Consumo normalizado: (shape: {consumo_normalizado.shape})\n {consumo_normalizado} \n")
 
 # Validação: média deve ser 0 para cada máquina
 nova_media = np.mean(consumo_normalizado, axis=1)
-print(f"Nova média por máquina (deve ser ~0):\n{nova_media}\n")
-
+print(f"Nova média por Máquina: \n {nova_media} \n")
 print("=" * 60)
 
 # %%
@@ -154,7 +158,7 @@ print(f"Variância de consumo por máquina:\n{var_por_maquina}\n")
 print(f"Verificação (std²): {std_por_maquina**2}\n")
 
 # Pergunta: qual máquina tem consumo mais consistente (menor variação)?
-# Resposta:
+# Resposta: a máquina que tem mais constância é a maquina 2
 
 maquina_consistente = np.argmin(std_por_maquina)
 print(f"Máquina com consumo mais consistente: máquina {maquina_consistente + 1} (std={std_por_maquina[maquina_consistente]:.2f})\n")
@@ -245,7 +249,7 @@ cumsum_por_dia = np.cumsum(consumo, axis=1)
 print(f"Consumo acumulado por máquina:\n{cumsum_por_dia}\n")
 
 # Pergunta: qual é o consumo acumulado total da máquina 1 até o dia 3?
-# Resposta: cumsum_por_dia[0, 2] = ?
+# Resposta: cumsum_por_dia[0, 2] = 375
 
 consumo_acumulado_m1_d3 = cumsum_por_dia[0, 2]
 print(f"Consumo acumulado da máquina 1 até o dia 3: {consumo_acumulado_m1_d3} kWh\n")
@@ -305,3 +309,4 @@ print("=" * 60)
 # 3. Explique por que sum(axis=0) + sum(axis=1) dão o mesmo resultado
 # 4. Compare média vs mediana em dados com outliers
 # 5. Use o desafio final para consolidar o Módulo 8
+

@@ -599,10 +599,111 @@ Operações entre arrays de shapes diferentes
 - ✅ **Módulo 7** — Broadcasting (COMPLETO E CONSOLIDADO)
 - ⚪ **Próximo** — Módulo 8: Agregações e Estatística (começando próxima sessão)
 
+---
+
+### Sessão 2026-09-10
+- **Consolidação Completa do Módulo 8 — Agregações e Estatística**
+- Arquivo de estudos: `numpy_28.py`
+
+#### Aprendizados — Agregações e Estatística Completas
+
+**Parte 1: Agregações Básicas (sum, mean)**
+- ✓ `np.sum()` sem axis → soma de TODOS os elementos
+- ✓ `np.mean()` sem axis → média geral
+- ✓ Shape do resultado: () — escalar
+
+**Parte 2: Agregações por Eixo**
+- ✓ `axis=0` → agregar ao longo das LINHAS (elimina máquinas)
+- ✓ `axis=1` → agregar ao longo das COLUNAS (elimina dias)
+- ✓ Validação: soma(axis=0) + soma(axis=1) devem ser iguais
+- ✓ Compreensão de redução de dimensão
+
+**Parte 3: Função keepdims=True**
+- ✓ SEM keepdims: shape reduz (3,5) com axis=1 → (3,)
+- ✓ COM keepdims: shape mantém (3,5) com axis=1 → (3,1)
+- ✓ Uso crítico: broadcasting novamente após agregação
+- ✓ Aplicação prática: normalização subtraindo média
+
+**Parte 4: Erro Identificado e Corrigido — NORMALIZAÇÃO**
+- ❌ Erro inicial: `consumo_normalizado = media_com - consumo` (sinais invertidos)
+- ✓ Correção: `consumo_normalizado = consumo - media_com` (ordem correta)
+- ✓ **Conceito consolidado:** Normalizar = centralizar em torno de 0
+  - Valores abaixo da média → negativos
+  - Valores acima da média → positivos
+  - Média dos valores normalizados ≈ 0
+- ✓ Validação: nova média ≈ 0 (erro de ponto flutuante esperado)
+
+**Parte 5: Desvio Padrão vs Variância**
+- ✓ Variância (var) = média dos desvios²
+- ✓ Desvio Padrão (std) = √variância
+- ✓ **Relação matemática:** std² = var
+- ✓ **Diferença de unidades:**
+  - std: mesma unidade dos dados (ex: kWh)
+  - var: unidade ao quadrado (ex: kWh²)
+- ✓ **Uso prático:**
+  - Variância: cálculos internos (matriz de covariância, PCA)
+  - Desvio Padrão: interpretação e padronização (z-score)
+
+**Parte 6: Mediana vs Média**
+- ✓ Mediana = valor do meio (não afetado por outliers)
+- ✓ Média = soma dividida por quantidade (sensível a outliers)
+- ✓ Em dados com outliers: mediana é mais robusta
+- ✓ `np.median()` retorna valor central
+
+**Parte 7: Percentis e Quantis**
+- ✓ Percentil 25 (Q1) = 25% dos dados abaixo deste valor
+- ✓ Percentil 50 (Q2) = mediana
+- ✓ Percentil 75 (Q3) = 75% dos dados abaixo deste valor
+- ✓ IQR (Interquartile Range) = Q3 - Q1 (amplitude central)
+- ✓ Detecção de outliers: valores fora de [Q1 - 1.5×IQR, Q3 + 1.5×IQR]
+- ✓ Função `np.percentile()`
+
+**Parte 8: Operações Cumulativas**
+- ✓ `np.cumsum()` = soma acumulada
+  - Interpretação: cada posição é acumulado até aquele ponto
+  - Exemplo: [10, 20, 30, 40] → [10, 30, 60, 100]
+- ✓ Uso prático: consumo acumulado ao longo do tempo
+- ✓ Com axis: cumsum por linha/coluna
+
+**Parte 9: Desafio Final — Análise Estatística Completa**
+- ✓ Criação de resumo com múltiplas métricas
+- ✓ Uso de `np.column_stack()` para organizar colunas
+- ✓ Identificação de sensor mais estável (menor std)
+- ✓ Identificação de hora com maior variação entre sensores
+
+#### Erros Identificados e Corrigidos
+| Erro | Tipo | Solução |
+|------|------|---------|
+| Ordem de subtração em normalização | Lógica | Usar `consumo - media` (não `media - consumo`) |
+| Confundir std com var | Conceitual | std = √var; std usa mesma unidade dos dados |
+| Pensar var é mais usada em ML | Conceitual | Ambas usadas: var em cálculos, std em interpretação |
+
+#### Habilidades Consolidadas
+- ✓ Agregações completas (sum, mean, min, max, median)
+- ✓ Agregações por eixo com compreensão profunda
+- ✓ Uso de keepdims para manutenção de dimensões
+- ✓ Normalização para centralização de dados
+- ✓ Estatística descritiva: std, var, percentil, quantil
+- ✓ Detecção de outliers usando IQR
+- ✓ Operações cumulativas com aplicação prática
+- ✓ Análise estatística completa em datasets reais
+
+#### Status do Aprendizado
+- ✅ **Módulo 1** — Fundamentos (COMPLETO)
+- ✅ **Módulo 2** — Criação de arrays (COMPLETO)
+- ✅ **Módulo 3** — Tipos de dados (COMPLETO)
+- ✅ **Módulo 4** — Indexação e fatiamento (COMPLETO)
+- ✅ **Módulo 5** — Alteração e organização (COMPLETO)
+- ✅ **Módulo 6** — Operações vetorizadas (COMPLETO)
+- ✅ **Módulo 7** — Broadcasting (COMPLETO)
+- ✅ **Módulo 8** — Agregações e Estatística (COMPLETO E CONSOLIDADO)
+- ⚪ **Próximo** — Módulo 9: Valores ausentes (NaN, inf, nan*, tratamento)
+
 #### Próxima Sessão
-- Iniciar **Módulo 8 — Agregações e Estatística**
-- Funções: `sum`, `mean`, `median`, `min`, `max`
-- Agregações por eixo (`axis=0`, `axis=1`)
-- Estatística: `std`, `var`, `percentile`, `quantile`
-- `keepdims=True` para manter dimensões
-- Aplicação prática: análise de dados de sensores
+- Iniciar **Módulo 9 — Valores ausentes e especiais**
+- Tópicos: NaN, inf, -inf, `np.isnan()`, `np.isinf()`, `np.isfinite()`
+- Funções: `np.nanmean()`, `np.nansum()`, `np.nanmedian()`
+- Substituição de valores inválidos
+- Máscaras e tratamento seguro de erros
+- `np.errstate` para controle de warnings numéricos
+- Aplicação prática: limpeza de dados de sensores com falhas
